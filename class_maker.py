@@ -1,4 +1,6 @@
 import json
+import os
+import time
 
 groups = ["دروس پایه",
           "دروس عمومی",
@@ -25,7 +27,10 @@ def group_assign(n):
 
 
 classdict = {}
-with open("computerITKey.json", "w") as fin:
+file_name = "computerITKey.json"
+if os.path.exists(file_name):
+    file_name += str(int(time.time()))
+with open(file_name, "w") as fin:
     while True:
         name = input("unit name> ")
         if name:
@@ -37,6 +42,7 @@ with open("computerITKey.json", "w") as fin:
             className["group"] = group_assign(input(name + " - group> "))
             className["vahed"] = num_maker(input(name + " - vahed> "))
             className["before"] = input(name + " - before> ")
+            className["along"] = input(name + " - along> ")
             # after has to be made later
             # className["after"] = input(name + " - after> ")
             print("-------------------------------")
